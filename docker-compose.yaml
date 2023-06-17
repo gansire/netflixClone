@@ -1,23 +1,40 @@
-version: '3.9'
+version: '3'
 
 services:
-  client_netflix: 
-    build: client
+  mongodb:
+    image: mongo
+    restart: always
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=${MONGO_ROOT_USER}
+      - MONGO_INITDB_ROOT_PASSWORD=${MONGO_ROOT_PASS}
     ports:
-      - 3000:3000
+      - "27017:27017"  
+  client_netflix: 
+    build: ../client
+    command: npm start
+    ports:
+      - "3000:3000"
     volumes:
-      - .:/app/
+      - ../client:/usr/app
+    restart: on-failure
 
   api_netflix: 
     build: api
+    command: npm start
     ports:
-      - 8800:8800
+      - "8800:8800"
     volumes:
-      - .:/app/api/
+      - ../api/:/user/app
+    restart: on-failure
 
   admin_netflix: 
     build: admin
+    command: npm start
     ports:
       - 4000:4000
     volumes:
-      - .:/usr/app
+      - ../admin/:/user/app
+      
+networks:
+  mongo-compose-network:
+    driver: bridge

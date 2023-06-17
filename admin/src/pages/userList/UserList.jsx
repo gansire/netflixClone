@@ -30,6 +30,7 @@ export default function UserList() {
       };
 
       const rec = await axios.get('/users', config);
+      console.log(rec);
       const resData = rec.data;
       
       setData(resData)

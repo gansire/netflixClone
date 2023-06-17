@@ -1,13 +1,12 @@
-FROM node:alpine
+FROM node:18-alpine as react_build 
 
-WORKDIR /usr/app
+WORKDIR /app
 
-COPY package*.json ./
+COPY . /app/ 
 
-RUN npm install
-
-COPY . .
+RUN npm install --silent
+RUN npm install react-scripts@3.0.1 -g --silent 
+RUN npm run build 
 
 EXPOSE 3000
-
-CMD [ "npm", "start"]
+CMD ["npm","start"]
