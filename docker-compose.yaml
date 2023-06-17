@@ -1,0 +1,15 @@
+version: '3.9'
+
+services:
+  client_netflix: 
+    build: client
+  #   ports:
+  #     -8000:3000
+  #   volumes:
+  #     -
+
+  # api_netflix: 
+  #   build: api
+  
+  # admin_netflix: 
+  #   build: admin
