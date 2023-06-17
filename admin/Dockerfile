@@ -1,10 +1,6 @@
 FROM node:alpine
 
-WORKDIR /user/app
-
-COPY package.json ./
-
-RUN npm install
+WORKDIR /usr/app
 
 COPY . .
 
