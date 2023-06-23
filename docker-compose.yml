@@ -1,0 +1,39 @@
+version: '3'
+
+services:
+   client:
+      build: ./client
+      command: npm start
+      ports:
+         - "3000:3000"
+      volumes:
+         - .:/usr/client
+   api:
+      build: ./api
+      command: npm start
+      ports:
+         - "8800:8800"
+      volumes:
+         - .:/usr/api
+   admin:
+      build: ./admin
+      command: npm start
+      ports:
+         - "4000:4000"
+      volumes:
+         - .:/usr/admin
+   mongo:
+      image: mongo
+      environment:
+         MONGO_INITDB_ROOT_USERNAME: jeannetflix
+         MONGO_INITDB_ROOT_PASSWORD: jeannetflix
+      ports:
+         - "27017:27017"
+      volumes:
+         - ./MongoDB:/data/db
+      networks:
+         - mongo-compose-network
+   
+networks: 
+   mongo-compose-network:
+      driver: bridge

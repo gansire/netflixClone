@@ -10,8 +10,8 @@ const bodyParser = require('body-parser');
 
 dotenv.config();
 mongoose.connect(process.env.MONGO_URL, {
-    useNewUrlParser: true,
-    useUnifiedTopology:true
+  useNewUrlParser: true,
+  useUnifiedTopology:true
 }).then(()=> console.log('DB Connection Successfull!')).catch((err)=> console.log(err))
 
 app.use(express.json());
