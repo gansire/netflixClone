@@ -55,7 +55,7 @@ router.get('/find/:id',verify, async (req, res) => {
 
 //GET ALL
 router.get('/',verify, async (req, res) => {
-    console.log('caiu aq2ui no get')
+    console.log(req)
     const query = req.query.new; 
     if(req.user.isAdmin){
         try {

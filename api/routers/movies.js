@@ -4,23 +4,13 @@ const verify = require('../verifyToken');
 
 //CREATE
 router.post('/',verify, async (req, res) => {
-    if(req.user.isAdmin){
-        const newMovie = new Movie(req.body);
-
-        try {
-            const savedMovie = await newMovie.save();
-            res.json(savedMovie)
-        } catch (error) {
-            res.json(error);   
-        }
-    } else{
-        res.json("You are not allowed !");
-    }
+    const newMovie = new Movie(req.body);
+    const savedMovie = await newMovie.save();
 })
 
 //UPDATE
 router.put('/:id',verify, async (req, res) => {
-    if(req.user.isAdmin){
+    // if(req.user.isAdmin){
         try {
             const updatedMovie = await Movie.findByIdAndUpdate(req.params.id, 
                 {
@@ -35,23 +25,23 @@ router.put('/:id',verify, async (req, res) => {
         } catch (error) {
             res.json(error);   
         }
-    } else{
-        res.json("You are not allowed !");
-    }
+    // } else{
+    //     res.json("You are not allowed !");
+    // }
 })
 
 //DELETE
 router.delete('/:id',verify, async (req, res) => {
-    if(req.user.isAdmin){
+    // if(req.user.isAdmin){
         try {
             await Movie.findByIdAndDelete(req.params.id)
             res.json("The movie has been deleted...")
         } catch (error) {
             res.json(error);   
         }
-    } else{
-        res.json("You are not allowed !");
-    }
+    // } else{
+    //     res.json("You are not allowed !");
+    // }
 })
 
 //GET
@@ -97,16 +87,16 @@ router.get('/random',verify, async (req, res) => {
 
 //GET ALL
 router.get('/',verify, async (req, res) => {
-    if(req.user.isAdmin){
+    // if(req.user.isAdmin){
         try {
             const movies = await Movie.find()
             res.json(movies.reverse())
         } catch (error) {
             res.json(error);   
         }
-    } else{
-        res.json("You are not allowed !");
-    }
+    // } else{
+    //     res.json("You are not allowed !");
+    // }
 })
 
 module.exports = router;

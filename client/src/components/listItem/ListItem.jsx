@@ -20,7 +20,10 @@ export default function ListItem({ index, item }) {
             "Bearer "+JSON.parse(localStorage.getItem("user")).accessToken,
           },
         });
-        setMovie(res.data);
+        if(res.data != null){
+          console.log(res.data)
+          setMovie(res.data);
+        }
       } catch (err) {
         console.log(err);
       }

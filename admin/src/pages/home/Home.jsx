@@ -27,16 +27,16 @@ export default function Home() {
   );
 
   const [userStats, setUserStats] = useState([]);
-
   useEffect(() => {
     const getStats = async () => {
       try {
         const res = await axios.get("/users/stats", {
           headers: {
             token:
-              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0ODc3NzY1YTBhZDZhMGUxZDQ0NWQ0ZSIsImlzQWRtaW4iOnRydWUsImlhdCI6MTY4NjY1Mjc3OCwiZXhwIjoxNjg3MDg0Nzc4fQ.k6tQ-exfOJHsyKuqoS-cjbW3pWSSmZ9T_QPz8zMlXss",
+              "Bearer "+JSON.parse(localStorage.getItem("user")).accessToken,
           },
         });
+        console.log(res)
         const statsList = res.data.sort(function (a, b) {
           return a._id - b._id;
         });

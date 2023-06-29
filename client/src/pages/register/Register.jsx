@@ -3,6 +3,7 @@ import { useRef } from "react";
 import { useState } from "react";
 import { useHistory } from "react-router-dom";
 import "./register.scss";
+import Button from '@mui/material/Button';
 
 export default function Register() {
   const [email, setEmail] = useState("");
@@ -35,7 +36,6 @@ export default function Register() {
             src="https://i.imgur.com/8tSYNFA.png"
             alt=""
           />
-          <button className="loginButton">Entrar</button>
         </div>
       </div>
       <div className="container">
@@ -60,6 +60,9 @@ export default function Register() {
             </button>
           </form>
         )}
+        <Button className="loginButton" variant="contained" onClick={()=> history.push("/login")}>
+          Entrar
+        </Button>
       </div>
     </div>
   );

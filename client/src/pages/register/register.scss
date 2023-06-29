@@ -21,17 +21,25 @@
         height: 40px;
       }
 
-      .loginButton {
-        background-color: red;
-        border: none;
-        color: white;
-        border-radius: 5px;
-        padding: 5px 15px;
-        font-size: 16px;
-        font-weight: 500;
-        cursor: pointer;
-      }
     }
+  }
+  
+  .loginButton {
+    position: absolute;
+    top: 5%;
+    right: 5%;
+    background-color: red;
+    border: none;
+    color: white;
+    border-radius: 5px;
+    padding: 5px 15px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+  }
+
+  .loginButton:hover{
+    background-color:rgb(150, 6, 6)
   }
 
   .container {

@@ -25,20 +25,23 @@ export default function NewMovie() {
   
   const upload = (items) => {
     items.forEach((item) => {
-      const metadata = {
-        contentType: 'image/jpeg'
-      };
-      
-      const fileName = new Date().getTime() + item.label + item.file.name;
-      console.log(fileName);
-      const uploadTask = ref(storage,`/items/${fileName}`)
-      // const storageRef = ref(storage, `/items/${fileName}`);
-      // const uploadTask = uploadBytesResumable(storageRef, fileName, metadata);
-      uploadTask.on(
-        "state_changed",
+      console.log("começa aqui", item)
+      const fileName = item.file.name;
+      const storageRef = ref(storage, `/items/${fileName}`);
+      const uploadTask = uploadBytesResumable(storageRef, item.file);
+
+      uploadTask.on("state_changed",
         (snapshot) => {
           const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-          console.log("Upload is " + progress + "% done");
+          console.log('Upload is ' + progress + '% done');
+          switch (snapshot.state) {
+            case 'paused':
+              console.log('Upload is paused');
+              break;
+            case 'running':
+              console.log('Upload is running');
+              break;
+          }
         },
         (error) => {
           console.log(error);
@@ -53,6 +56,7 @@ export default function NewMovie() {
           });
         }
       );
+      
     });
   };
 

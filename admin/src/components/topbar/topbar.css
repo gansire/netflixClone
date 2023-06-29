@@ -6,6 +6,12 @@
   top: 0;
   z-index: 999;
 }
+.profile .options{
+  display: none;
+  background-color: var(--main-color);
+  border-radius: 5px;
+}
+
 
 .topbarWrapper {
   height: 100%;

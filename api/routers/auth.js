@@ -21,6 +21,7 @@ router.post('/register', async (req, res) => {
 
 //LOGIN
 router.post('/login', async (req, res) => {
+    console.log("caiu aqui ")
     try {
         const user = await User.findOne( {email: req.body.email} );
         !user && res.json('Wrong password or username !')
